@@ -112,13 +112,16 @@ class _CreateTumbleState extends State<CreateTumble> {
                       text: 'Cancel',
                       style: TextStyle(fontWeight: FontWeight.w600),
                       recognizer: TapGestureRecognizer()
-                        ..onTap = () => Navigator.pop(context))),
+                        ..onTap = () => Navigator.pop(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => Dashboard())))),
               ElevatedButton(
                 onPressed: () {
                   userTumbles.add(
                       // ignore: unnecessary_new
                       new TumbleRecorder(tumble: tumbleText.text));
-                  Navigator.pushReplacement(context,
+                  Navigator.pop(context,
                       MaterialPageRoute(builder: (context) => Dashboard()));
                   setState(() {
                     tumbleText.clear();
