@@ -87,7 +87,6 @@ class _CreateTumbleState extends State<CreateTumble> {
               SizedBox(
                 width: 40,
               ),
-
               Text(
                 _enteredText.length.toString() + "/280 character(s)",
                 style: TextStyle(
@@ -125,6 +124,8 @@ class _CreateTumbleState extends State<CreateTumble> {
                       MaterialPageRoute(builder: (context) => Dashboard()));
                   setState(() {
                     tumbleText.clear();
+                    ScaffoldMessenger.of(context)
+                        .showSnackBar(SnackBar(content: Text('Tumbled')));
                   });
                 },
                 child: Text('Let them know!',

@@ -28,17 +28,6 @@ class MyStatefulWidget extends StatefulWidget {
 
 /// This is the private State class that goes with MyStatefulWidget.
 class _MyStatefulWidgetState extends State<MyStatefulWidget> {
-  int _selectedIndex = 0;
-  static const TextStyle optionStyle =
-      TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
-
-  void _onItemTapped(int index) {
-    setState(() {
-      if (index == 1) {}
-      _selectedIndex = index;
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -92,72 +81,68 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
                     scrollDirection: Axis.vertical,
                     itemCount: userTumbles.length,
                     itemBuilder: (context, index) {
-                      return Center(
+                      return Padding(
+                        padding: const EdgeInsets.symmetric(
+                            vertical: 5, horizontal: 5),
                         child: Container(
-                          child: Card(
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(20),
+                                color: Color(0xffECDBBA).withOpacity(0.06)),
+                            child: ListTile(
+                              contentPadding: EdgeInsets.symmetric(
+                                  horizontal: 10, vertical: 5),
                               shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(20)),
-                              color: Color(0xffECDBBA).withOpacity(0.06),
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.start,
-                                children: [
-                                  ElevatedButton(
-                                    onPressed: () {},
-                                    child: Icon(Icons.person,
-                                        color: Color(0xffC84B31)),
-                                    style: ElevatedButton.styleFrom(
-                                      shape: CircleBorder(),
-                                      padding: EdgeInsets.all(4),
-                                      primary: Color(0xffECDBBA),
-                                    ),
-                                  ),
-                                  Container(
-                                    child: Column(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.start,
-                                      children: [
-                                        Row(
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.start,
-                                            children: [
-                                              Text(
-                                                'John',
-                                                style: TextStyle(
-                                                    fontSize: 16,
-                                                    fontWeight: FontWeight.w500,
-                                                    color: Color(0xffECDBBA)),
-                                              ),
-                                              Text(
-                                                ' @johndoe',
-                                                style: TextStyle(
-                                                    fontSize: 12,
-                                                    fontWeight: FontWeight.w500,
-                                                    color: Color(0xffECDBBA)
-                                                        .withOpacity(0.2)),
-                                              ),
-                                              Text(
-                                                " " + transactionDate,
-                                                style: TextStyle(
-                                                    fontSize: 12,
-                                                    fontWeight: FontWeight.w500,
-                                                    color: Color(0xffECDBBA)
-                                                        .withOpacity(0.2)),
-                                              ),
-                                            ]),
-                                        Container(
-                                          child: Text(userTumbles[index].tumble,
-                                              style: TextStyle(
-                                                  fontWeight: FontWeight.w400,
-                                                  color: Color(0xffECDBBA)),
-                                              textAlign: TextAlign.left),
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                ],
-                              )),
-                          // ignore: prefer_const_literals_to_create_immutables
-                        ),
+                              leading: CircleAvatar(
+                                backgroundColor: Color(0xffECDBBA),
+                                radius: 20.0,
+                                child: Icon(Icons.person,
+                                    color: Color(0xffC84B31)),
+                              ),
+                              title: Padding(
+                                padding: const EdgeInsets.only(top: 3),
+                                child: Row(
+                                    mainAxisAlignment: MainAxisAlignment.start,
+                                    children: [
+                                      Text(
+                                        'John',
+                                        style: TextStyle(
+                                            fontSize: 16,
+                                            fontWeight: FontWeight.w500,
+                                            color: Color(0xffECDBBA)),
+                                      ),
+                                      Text(
+                                        ' @johndoe',
+                                        style: TextStyle(
+                                            fontSize: 12,
+                                            fontWeight: FontWeight.w500,
+                                            color: Color(0xffECDBBA)
+                                                .withOpacity(0.2)),
+                                      ),
+                                      Text(
+                                        " " + transactionDate,
+                                        style: TextStyle(
+                                            fontSize: 12,
+                                            fontWeight: FontWeight.w500,
+                                            color: Color(0xffECDBBA)
+                                                .withOpacity(0.2)),
+                                      ),
+                                    ]),
+                              ),
+                              subtitle: Container(
+                                child: Padding(
+                                  padding: const EdgeInsets.only(bottom: 3),
+                                  child: Text(userTumbles[index].tumble,
+                                      style: TextStyle(
+                                          fontWeight: FontWeight.w400,
+                                          color: Color(0xffECDBBA)),
+                                      textAlign: TextAlign.left),
+                                ),
+                              ),
+                            )
+
+                            // ignore: prefer_const_literals_to_create_immutables
+                            ),
                       );
                     }),
           ),
