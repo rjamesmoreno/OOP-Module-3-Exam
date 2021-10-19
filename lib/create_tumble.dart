@@ -6,6 +6,9 @@ import 'package:tumble/dashboard.dart';
 import 'package:tumble/tumbles.dart';
 
 final tumbleText = TextEditingController();
+void clearText() {
+  tumbleText.clear();
+}
 
 class CreateTumble extends StatefulWidget {
   const CreateTumble({Key? key}) : super(key: key);
@@ -117,6 +120,9 @@ class _CreateTumbleState extends State<CreateTumble> {
                       new TumbleRecorder(tumble: tumbleText.text));
                   Navigator.pushReplacement(context,
                       MaterialPageRoute(builder: (context) => Dashboard()));
+                  setState(() {
+                    tumbleText.clear();
+                  });
                 },
                 child: Text('Let them know!',
                     style: TextStyle(fontWeight: FontWeight.w600)),
