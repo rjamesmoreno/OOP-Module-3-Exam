@@ -60,7 +60,7 @@ class LoginScreen extends StatelessWidget {
                                 color: Color(0xffECDBBA),
                                 fontWeight: FontWeight.w100),
                             decoration: InputDecoration(
-                                errorText: null,
+                                errorStyle: TextStyle(height: 0),
                                 border: OutlineInputBorder(
                                     borderSide: BorderSide.none,
                                     borderRadius: BorderRadius.circular(20)),
@@ -84,7 +84,7 @@ class LoginScreen extends StatelessWidget {
                                 color: Color(0xffECDBBA),
                                 fontWeight: FontWeight.w100),
                             decoration: InputDecoration(
-                                errorText: null,
+                                errorStyle: TextStyle(height: 0),
                                 border: OutlineInputBorder(
                                     borderSide: BorderSide.none,
                                     borderRadius: BorderRadius.circular(20)),
