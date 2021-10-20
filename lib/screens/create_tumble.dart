@@ -19,6 +19,7 @@ class CreateTumble extends StatefulWidget {
 
 class _CreateTumbleState extends State<CreateTumble> {
   String _enteredText = '';
+  bool _check = false;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -116,17 +117,26 @@ class _CreateTumbleState extends State<CreateTumble> {
                             MaterialPageRoute(
                                 builder: (context) => Dashboard())))),
               ElevatedButton(
-                onPressed: () {
-                  userTumbles.add(
-                      // ignore: unnecessary_new
-                      new TumbleRecorder(tumble: tumbleText.text));
-                  Navigator.pop(context,
-                      MaterialPageRoute(builder: (context) => Dashboard()));
+                onPressed: () async {
                   setState(() {
-                    tumbleText.clear();
-                    ScaffoldMessenger.of(context)
-                        .showSnackBar(SnackBar(content: Text('Tumbled')));
+                    _check = true;
                   });
+                  if (_enteredText.isNotEmpty) {
+                    userTumbles.add(
+                        // ignore: unnecessary_new
+                        new TumbleRecorder(tumble: tumbleText.text));
+                    Navigator.pop(context,
+                        MaterialPageRoute(builder: (context) => Dashboard()));
+                    setState(() {
+                      _check = false;
+                      tumbleText.clear();
+                      ScaffoldMessenger.of(context)
+                          .showSnackBar(SnackBar(content: Text('Tumbled')));
+                    });
+                  } else {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBar(content: Text("C'mon, say something")));
+                  }
                 },
                 child: Text('Let them know!',
                     style: TextStyle(fontWeight: FontWeight.w600)),
