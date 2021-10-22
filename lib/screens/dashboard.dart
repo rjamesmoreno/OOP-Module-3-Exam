@@ -150,7 +150,6 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
       ),
       bottomNavigationBar: BottomAppBar(
         elevation: 0,
-        clipBehavior: Clip.hardEdge,
         notchMargin: 8,
         shape: CircularNotchedRectangle(),
         color: Color(0xff272727),
