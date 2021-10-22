@@ -29,7 +29,7 @@ class _CreateTumbleState extends State<CreateTumble> {
         height: MediaQuery.of(context).size.height,
         child: TextField(
           controller: tumbleText,
-          maxLength: 240,
+          maxLength: 280,
           onChanged: (value) {
             setState(() {
               _enteredText = value;
@@ -89,7 +89,7 @@ class _CreateTumbleState extends State<CreateTumble> {
                 width: 40,
               ),
               Text(
-                _enteredText.length.toString() + "/240 character(s)",
+                _enteredText.length.toString() + "/280 character(s)",
                 style: TextStyle(
                     color: Color(0xffECDBBA),
                     fontWeight: FontWeight.w500,
@@ -117,27 +117,23 @@ class _CreateTumbleState extends State<CreateTumble> {
                             MaterialPageRoute(
                                 builder: (context) => Dashboard())))),
               ElevatedButton(
-                onPressed: () async {
-                  setState(() {
-                    _check = true;
-                  });
-                  if (_enteredText.isNotEmpty) {
-                    userTumbles.add(
-                        // ignore: unnecessary_new
-                        new TumbleRecorder(tumble: tumbleText.text));
-                    Navigator.pop(context,
-                        MaterialPageRoute(builder: (context) => Dashboard()));
-                    setState(() {
-                      _check = false;
-                      tumbleText.clear();
-                      ScaffoldMessenger.of(context)
-                          .showSnackBar(SnackBar(content: Text('Tumbled')));
-                    });
-                  } else {
-                    ScaffoldMessenger.of(context).showSnackBar(
-                        SnackBar(content: Text("C'mon, say something")));
-                  }
-                },
+                onPressed: _enteredText.isEmpty
+                    ? null
+                    : () async {
+                        userTumbles.add(
+                            // ignore: unnecessary_new
+                            new TumbleRecorder(tumble: tumbleText.text));
+                        Navigator.pop(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => Dashboard()));
+                        setState(() {
+                          _check = false;
+                          tumbleText.clear();
+                          ScaffoldMessenger.of(context)
+                              .showSnackBar(SnackBar(content: Text('Tumbled')));
+                        });
+                      },
                 child: Text('Let them know!',
                     style: TextStyle(fontWeight: FontWeight.w600)),
                 style: ButtonStyle(
