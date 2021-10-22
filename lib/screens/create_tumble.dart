@@ -29,7 +29,7 @@ class _CreateTumbleState extends State<CreateTumble> {
         height: MediaQuery.of(context).size.height,
         child: TextField(
           controller: tumbleText,
-          maxLength: 280,
+          maxLength: 240,
           onChanged: (value) {
             setState(() {
               _enteredText = value;
@@ -89,7 +89,7 @@ class _CreateTumbleState extends State<CreateTumble> {
                 width: 40,
               ),
               Text(
-                _enteredText.length.toString() + "/280 character(s)",
+                _enteredText.length.toString() + "/240 character(s)",
                 style: TextStyle(
                     color: Color(0xffECDBBA),
                     fontWeight: FontWeight.w500,
